@@ -1,0 +1,37 @@
+{
+  "groups": [
+    {
+      "name": "http",
+      "type": "com.hunau.HttpClientConfig",
+      "sourceType": "com.hunau.HttpClientConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "http.connect-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.hunau.HttpClientConfig"
+    },
+    {
+      "name": "http.connection-request-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.hunau.HttpClientConfig"
+    },
+    {
+      "name": "http.default-max-per-route",
+      "type": "java.lang.Integer",
+      "sourceType": "com.hunau.HttpClientConfig"
+    },
+    {
+      "name": "http.max-total",
+      "type": "java.lang.Integer",
+      "sourceType": "com.hunau.HttpClientConfig"
+    },
+    {
+      "name": "http.socket-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.hunau.HttpClientConfig"
+    }
+  ],
+  "hints": []
+}

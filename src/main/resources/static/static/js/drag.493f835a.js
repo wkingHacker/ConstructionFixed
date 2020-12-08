@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["drag"],{"3ea8":function(n,a,e){"use strict";e.r(a);var l,u,o=e("2877"),p={},s=Object(o["a"])(p,l,u,!1,null,null,null);a["default"]=s.exports}}]);

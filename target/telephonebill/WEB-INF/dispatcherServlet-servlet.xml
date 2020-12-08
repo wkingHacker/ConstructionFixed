@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <context:component-scan base-package="com.hunau.controller"></context:component-scan>
+    <mvc:default-servlet-handler/>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=utf-8</value>
+                        <value>application/json;charset=utf-8</value>
+                    </list>
+                </property>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!--模板编码-->
+    <bean id="templateResolver"
+          class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".html"/>
+        <!-- HTML is the default value, added here for the sake of clarity. -->
+        <property name="templateMode" value="HTML"/>
+        <!-- Template cache is true by default. Set to false if you want -->
+        <!-- templates to be automatically updated when modified. -->
+        <property name="cacheable" value="true"/>
+        <property name="characterEncoding" value="UTF-8"/>
+    </bean>
+    <!--Thymeleaf的模板引擎 -->
+    <bean id="templateEngine"
+          class="org.thymeleaf.spring5.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver"/>
+        <!-- 是否使用springEL功能 -->
+        <property name="enableSpringELCompiler" value="true"/>
+    </bean>
+    <!--    视图解析器-->
+    <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine"/>
+        <property name="characterEncoding" value="UTF-8"/>
+    </bean>
+
+    <mvc:view-controller path="/WEB-INF/views/login.html" view-name="loginview"></mvc:view-controller>
+    <!--    异常处理-->
+    <bean id="simpleMappingExceptionResolver"
+          class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionAttribute" value="exception"></property>
+        <property name="defaultErrorView" value="error"/>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.ArrayIndexOutOfBoundsException">error</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

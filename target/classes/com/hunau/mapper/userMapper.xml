@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunau.mapper.userMapper">
+
+<select id="selectUserByUserNameAndPwd"  resultType="com.hunau.bean.User" >
+    select * from user where username=#{username,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
+</select>
+
+<insert id="insertUser" parameterType="com.hunau.bean.User" >
+    insert into user(username,password,role) values(#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{role,jdbcType=VARCHAR})
+
+</insert>
+<update id="updateUser" parameterType="com.hunau.bean.User" >
+    update user set username=#{username} where userid=#{userid}
+</update>
+    <delete id="deleteUser" parameterType="com.hunau.bean.User" >
+        delete from user where userid = #{userid}
+    </delete>
+    <insert id="insertTranslateBean" parameterType="com.hunau.bean.translateBean" >
+        insert into filetranslatebean (fileId,status,filename,createTime) values (#{fileId},#{status},#{filename},#{createTime})
+    </insert>
+    <insert id="insertfileBean" parameterType="com.hunau.bean.fileBean" >
+        insert into fileBean (fileId,status,filename,createTime) values (#{fileId},#{status},#{filename},#{createTime})
+    </insert>
+    <select id="findAll" resultType="com.hunau.bean.translateBean">
+        select * from filebean
+    </select>
+    <delete id="deleteFile" parameterType="java.lang.String" >
+        delete from filebean where fileId=#{fileId}
+    </delete>
+</mapper>
